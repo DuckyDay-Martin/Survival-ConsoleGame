@@ -1,4 +1,5 @@
 ﻿using Survival_ConsoleGame.Destinations;
+using Survival_ConsoleGame.Player;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,22 +8,35 @@ using System.Threading.Tasks;
 
 namespace Survival_ConsoleGame
 {
-    internal class Engine : Player
+    public class Engine
     {
        // Player player = new Player();
-        Hut destination_HUT = new Hut();
-        Forest destination_FOREST = new Forest();
-        Mountains destination_MOUNTAINS = new Mountains();
+        
+        private Dictionary<int, string> availableResources;
+        private PlayerInventory inventory;
 
+        public Engine() 
+        {
+            availableResources = new Dictionary<int, string>();
+            inventory = new PlayerInventory();
+        }
+
+        public void AvailableResources()
+        {
+                availableResources.Add(1, "Wood");
+                availableResources.Add(2, "Iron");
+                availableResources.Add(3, "Grass");
+                availableResources.Add(4, "Stone");
+                availableResources.Add(5, "Meat");
+        }
 
 
         public void Start_Tutorial()
         {
             Console.WriteLine("Before we proceed , please enter you nickname...");
+            Console.WriteLine();       
             Console.WriteLine();
-            nickname = Console.ReadLine();
-            Console.WriteLine();
-            Console.WriteLine("Hello and welcome " + nickname + " to the ~VOID~");
+            Console.WriteLine("Hello and welcome to the ~VOID~");
             Console.WriteLine("A survival console ,menu based mini game");
             Console.WriteLine("Basically you will have the option to 1.Craft 2.Fight 3.Farm Materials 4.Sleep and other stuff");
             Console.WriteLine("On every player menu page there will be a brief explanation what the option is doing so no worries");
@@ -41,41 +55,24 @@ namespace Survival_ConsoleGame
             }
         }
 
-        public void Start_PlayerMenu()
-        {           
-            Console.WriteLine("Tip: So , here are your options or freedom for what you can do or where to go");
-
-            Console.WriteLine("~1.Your Hut");
-            Console.WriteLine("~2.Forest");
-            Console.WriteLine("~3.Mountains");
-            Console.WriteLine("~4.City");
-            Console.WriteLine("~5.Player");
-            
-            
-            Console.WriteLine();
-            Console.WriteLine("> ");
-            int n = int.Parse(Console.ReadLine());
-
-            switch (n)
-            {
-
-                case 1:
-                    Console.Clear();
-                    destination_HUT.Destination_HutMenu();
-                    break;
-
-                case 2:
-                    Console.Clear();
-                    destination_FOREST.Destination_ForestMenu();
-                    break;
-
-                case 3:
-                    Console.Clear();
-                    destination_MOUNTAINS.Destination_MountainsMenu();
-                    break;
-            
-            }
+        //Forest Func
+        public void Hunt()
+        {
+            inventory.Add_ItemToInventory(5, 2);
         }
-       
+        public void ChopTrees()
+        {
+            inventory.Add_ItemToInventory(1, 2);
+        }
+        public void CollectGrass()
+        {
+            inventory.Add_ItemToInventory(3, 5);
+        }
+
+    
     }
 }
+/*
+Now ,the functionality for every destination will be implemented here - in the Engine because it's easier for me to keep track on the inventory and to keep track on the current
+game state, and also to save the items in the list
+*/

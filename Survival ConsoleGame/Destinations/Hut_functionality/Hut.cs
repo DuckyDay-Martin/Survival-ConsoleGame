@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Survival_ConsoleGame.Destinations
 {
-    internal class Hut : Player
+    internal class Hut : _Player
     {
         public void Destination_HutMenu()
         {            
-           Player player = new Player();
+           _Player player = new _Player();
 
             Console.WriteLine("Tip: So, here is your house ,where you can rest ,craft and eat");
             Console.WriteLine();

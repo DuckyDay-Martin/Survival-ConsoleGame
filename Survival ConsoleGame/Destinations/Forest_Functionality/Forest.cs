@@ -1,4 +1,4 @@
-﻿using Survival_ConsoleGame.Global;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,21 +9,21 @@ namespace Survival_ConsoleGame.Destinations
 {
     internal class Forest
     {
-        Player player = new Player();
-        List<int> inventory = new List<int>();
-        Resources resources = new Resources();
-        Dictionary<int, string> availableResources = new Dictionary<int, string>();
-        
-        public void Destination_ForestMenu()
+
+        private Engine engine;
+
+        public Forest (Engine engine)
         {
-            resources.AvailableResources(availableResources);
+            this.engine = engine;
+        }
 
-
+        public void Destination_ForestMenu()
+        {            
             Console.WriteLine("Tip: Here in the forest you can be chill and just get tired a bit but that's all");
             Console.WriteLine();
-            Console.WriteLine("~1.Hunt Deers (+Meat, -energy)");
-            Console.WriteLine("~2.Chop Trees (+Wood, -energy)");
-            Console.WriteLine("~3.Collect Grass (+Grass, -energy)");
+            Console.WriteLine("~1.Hunt Deers (+Meat(2), -energy(50))");
+            Console.WriteLine("~2.Chop Trees (+Wood(2), -energy(40))");
+            Console.WriteLine("~3.Collect Grass (+Grass(5), -energy(10))");
 
             Console.WriteLine();
             Console.WriteLine(">   ");
@@ -33,45 +33,18 @@ namespace Survival_ConsoleGame.Destinations
             switch (n)
             {
                 case 1:
-                    Forest_Hunt(inventory);
-                    player.Player_Inventory(inventory, availableResources);
+                    engine.Hunt();
                     break;
 
                 case 2:
-                    Forest_ChopTrees(inventory);
-                    player.Player_Inventory(inventory, availableResources);
+                    engine.ChopTrees();
                     break;
 
                 case 3:
-                    Forest_CollectGrass(inventory);
-                    player.Player_Inventory(inventory, availableResources);
+                    engine.CollectGrass();
                     break;
             }
         }
 
-        public void Forest_Hunt(List<int> inventory)
-        {
-            //To Do:Make random drop for meat
-            inventory.Add(5);
-            inventory.Add(5);
-            Console.WriteLine("You hunted 2 meat!");
-        }
-
-        public void Forest_ChopTrees(List<int> inventory)
-        {
-            //To Do:Make random drop for wood
-            inventory.Add(1);
-            Console.WriteLine("Congrats, now you have +1 wood in your inventroy");
-        }
-
-        public void Forest_CollectGrass(List<int> inventory)
-        {
-            inventory.Add(1);
-            inventory.Add(1);
-            inventory.Add(1);
-            inventory.Add(1);
-            inventory.Add(1);
-            Console.WriteLine("I mean ,collecting grass can be hard too...well you've collected 5 grass");
-        }
     }
 }

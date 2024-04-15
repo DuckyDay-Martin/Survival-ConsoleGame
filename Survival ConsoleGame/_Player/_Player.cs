@@ -1,4 +1,5 @@
-﻿using Survival_ConsoleGame.Global;
+﻿
+using Survival_ConsoleGame.Destinations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +8,13 @@ using System.Threading.Tasks;
 
 namespace Survival_ConsoleGame
 {
-    internal class Player
+    internal class _Player
     {
-        public string nickname;
-
+       Engine engine = new Engine();
+        //Hut destination_HUT = new Hut();
+        Forest destination_FOREST;
+        Mountains destination_MOUNTAINS = new Mountains();
+        //Needs Refactoring
         private int hp = 100;
         public int defense = 100;
         public int attack = 10;
@@ -56,8 +60,7 @@ namespace Survival_ConsoleGame
 
         public void Player_PlayerStats()
         {
-            Console.WriteLine("_____________________");
-            Console.WriteLine(nickname);
+            Console.WriteLine("_____________________");           
             Console.WriteLine("Stats:");
             Console.WriteLine("* Health: " + HP);
             Console.WriteLine("* Armour: " + defense);
@@ -66,21 +69,6 @@ namespace Survival_ConsoleGame
             Console.WriteLine("_____________________");
         }
         
-        public void Player_Inventory(List<int> inventory, Dictionary<int, string> availableResources)
-        {
-            string checkedItem;
-            foreach (int item in inventory) 
-            {
-                if (inventory.Contains(item))
-                {
-                    checkedItem = availableResources.GetValueOrDefault(item);
-                    Console.WriteLine(checkedItem);
-                }           
-            }
-        }
-
-        
-
         //On Sleep regeining some energy
         public int Player_EnergySleep(int currentEnergy)
         {
@@ -117,6 +105,41 @@ namespace Survival_ConsoleGame
             }
         }
 
+        public void Start_PlayerMenu()
+        {
+            Console.WriteLine("Tip: So , here are your options or freedom for what you can do or where to go");
 
+            Console.WriteLine("~1.Your Hut");
+            Console.WriteLine("~2.Forest");
+            Console.WriteLine("~3.Mountains");
+            Console.WriteLine("~4.City");
+            Console.WriteLine("~5.Player");
+
+
+            Console.WriteLine();
+            Console.WriteLine("> ");
+            int n = int.Parse(Console.ReadLine());
+
+            switch (n)
+            {
+
+                case 1:
+                    Console.Clear();
+                   // destination_HUT.Destination_HutMenu();
+                    break;
+
+                case 2:
+                    Console.Clear();
+                    destination_FOREST = new Forest(engine);
+                    destination_FOREST.Destination_ForestMenu();
+                    break;
+
+                case 3:
+                    Console.Clear();
+                    destination_MOUNTAINS.Destination_MountainsMenu();
+                    break;
+
+            }
+        }
     }
 }
