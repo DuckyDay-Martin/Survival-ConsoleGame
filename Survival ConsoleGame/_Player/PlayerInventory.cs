@@ -21,7 +21,8 @@ namespace Survival_ConsoleGame.Player
                 [3] = "Plastic",
                 [4] = "Iron",
                 [5] = "Grass",
-                [6] = "Meat"
+                [6] = "Meat",
+                [7] = "Water"
             };
 
         }

@@ -13,10 +13,11 @@ namespace Survival_ConsoleGame.Destinations
         PlayerInventory playerInventory;
         _Player player;
 
-        public Forest(PlayerInventory inventory, _Player playerIns)
+        //Creating player ref so i can keep the PlayerInventory instance consistent
+        public Forest(PlayerInventory inventory, _Player playerRef)
         {
             playerInventory = inventory;
-            player = playerIns;
+            player = playerRef;
         }
 
 

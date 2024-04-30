@@ -14,13 +14,14 @@ namespace Survival_ConsoleGame
         Engine engine = new Engine();
         
         Forest destination_FOREST;
-        Mountains destination_MOUNTAINS = new Mountains();
+        Mountains destination_MOUNTAINS;
         PlayerInventory playerInventory;
 
         public _Player(PlayerInventory inventory)
         {
             playerInventory = inventory;
             destination_FOREST = new Forest(playerInventory, this);
+            destination_MOUNTAINS = new Mountains(playerInventory, this);
         }
 
         // On Sleep regaining some energy
