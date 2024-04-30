@@ -10,27 +10,7 @@ namespace Survival_ConsoleGame
 {
     public class Engine
     {
-       // Player player = new Player();
-        
-        private Dictionary<int, string> availableResources;
-        private PlayerInventory inventory;
-
-        public Engine() 
-        {
-            availableResources = new Dictionary<int, string>();
-            inventory = new PlayerInventory();
-        }
-
-        public void AvailableResources()
-        {
-                availableResources.Add(1, "Wood");
-                availableResources.Add(2, "Iron");
-                availableResources.Add(3, "Grass");
-                availableResources.Add(4, "Stone");
-                availableResources.Add(5, "Meat");
-        }
-
-
+      
         public void Start_Tutorial()
         {
             Console.WriteLine("Before we proceed , please enter you nickname...");
@@ -55,24 +35,8 @@ namespace Survival_ConsoleGame
             }
         }
 
-        //Forest Func
-        public void Hunt()
-        {
-            inventory.Add_ItemToInventory(5, 2);
-        }
-        public void ChopTrees()
-        {
-            inventory.Add_ItemToInventory(1, 2);
-        }
-        public void CollectGrass()
-        {
-            inventory.Add_ItemToInventory(3, 5);
-        }
-
-    
     }
 }
 /*
-Now ,the functionality for every destination will be implemented here - in the Engine because it's easier for me to keep track on the inventory and to keep track on the current
-game state, and also to save the items in the list
+Fuck that shit
 */

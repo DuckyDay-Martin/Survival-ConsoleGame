@@ -1,54 +1,86 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
-using System.Net.Http.Headers;
 
-namespace Test_Inventory_2
+public class InventorySystem
 {
-    class Program
+    private List<int> inventory;
+    private Dictionary<int, string> itemIndexer = new Dictionary<int, string>();
+
+    public InventorySystem()
     {
-        public static void Main(string[] args)
+        inventory = new List<int>();
+        itemIndexer = new()
         {
+            [1] = "Wood",
+            [2] = "Iron",
+        };
+    }
 
-            Dictionary<int, string> availableResources = new Dictionary<int, string>();
-            Resources(availableResources);
+    public void AddItem(int item)
+    {
+        inventory.Add(item);
+        Console.WriteLine(item + " has been added to the inventory.");
+    }
 
-            List<int> inventory = new List<int>();
-
-            Hunt(inventory);
-            CheckInventory(availableResources, inventory);
-
-
-
-
+    public void DisplayInventory()
+    {
+        Console.WriteLine("Inventory:");
+        string itemName;
+        foreach (int item in inventory)
+        { 
+          if (itemIndexer.ContainsKey(item))
+          {
+                itemName = (string)itemIndexer[item];
+                Console.WriteLine(itemName);
+          }
         }
+    }
+}
 
-        public static void Hunt(List<int> inventory)
-        {
-            inventory.Add(1);
-            inventory.Add(3);
-            inventory.Add(2);
-            inventory.Add(2);
-        }
+class Program
+{
+    static void Main(string[] args)
+    {
+        InventorySystem inventorySystem = new InventorySystem();
+        Forest forest = new Forest();
 
-        public static void Resources(Dictionary<int, string> inventory) 
-        {
-            inventory.Add(1, "Wood");
-            inventory.Add(2, "Iron");
-            inventory.Add(3, "Plastic");
-        }
-        public static void CheckInventory(Dictionary<int, string> availableResources, List<int> inventory)
-        {
-            string checkedItem;
-            foreach (int item in inventory)
-            {
-                if (inventory.Contains(item))
-                {
-                    checkedItem = availableResources.GetValueOrDefault(item);
-                    Console.WriteLine(checkedItem);
-                }
+        Hunt(inventorySystem);
+        forest.ChopTrees(inventorySystem);
+        // Displaying the inventory
+        inventorySystem.AddItem(1);
 
-            }
-        }
+        inventorySystem.DisplayInventory();
+    }
+
+    
+
+    public static void Hunt(InventorySystem inventorySystem)
+    {
+       
+        inventorySystem.AddItem(1);
+        inventorySystem.AddItem(2);
+
+        
+    }
+}
+
+public class Lake
+{
+    
+    public void CollectWater(InventorySystem inventorySystem)
+    {
+        inventorySystem.AddItem(2);
+        Console.WriteLine("WaterActually:)");
+    }
+
+
+}
+
+public class Forest
+{
+   public void ChopTrees(InventorySystem inventorySystem)
+    {
+        inventorySystem.AddItem(2);
+        inventorySystem.AddItem(2);
     }
 }

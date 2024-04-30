@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Survival_ConsoleGame.Player;
+using System;
 
 namespace Survival_ConsoleGame
 {
@@ -10,8 +11,9 @@ namespace Survival_ConsoleGame
             Console.WriteLine("1.Start");
             Console.WriteLine("2.Exit");
             int n = int.Parse(Console.ReadLine());
+            PlayerInventory playerInventory = new PlayerInventory();
             Engine engine = new Engine();
-            _Player player = new _Player();
+            _Player player = new _Player(playerInventory);
 
             switch (n)
             {

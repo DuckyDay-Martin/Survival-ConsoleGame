@@ -1,5 +1,6 @@
 ﻿
 using Survival_ConsoleGame.Destinations;
+using Survival_ConsoleGame.Player;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,66 +11,19 @@ namespace Survival_ConsoleGame
 {
     internal class _Player
     {
-       Engine engine = new Engine();
-        //Hut destination_HUT = new Hut();
+        Engine engine = new Engine();
+        
         Forest destination_FOREST;
         Mountains destination_MOUNTAINS = new Mountains();
-        //Needs Refactoring
-        private int hp = 100;
-        public int defense = 100;
-        public int attack = 10;
-        public int xp = 0;
-        public int lvl = 1;
-        public int energy = 100;
+        PlayerInventory playerInventory;
 
-        public int HP
+        public _Player(PlayerInventory inventory)
         {
-            get { return hp; }
-            set { hp = value; }
+            playerInventory = inventory;
+            destination_FOREST = new Forest(playerInventory, this);
         }
 
-        public int Defense
-        {
-            get { return defense; }
-            set { defense = value; }
-        }
-
-        public int Attack
-        {
-            get { return attack; }
-            set { attack = value; }
-        }
-        
-        public int XP
-        {
-            get { return xp; }
-            set { hp = value; }
-        }
-
-        public int Level
-        {
-            get { return lvl; }
-            set { lvl = value; }
-        }
-        
-        public int Energy
-        {
-            get { return energy; }
-            set { energy = value; }
-        }
-
-        public void Player_PlayerStats()
-        {
-            Console.WriteLine("_____________________");           
-            Console.WriteLine("Stats:");
-            Console.WriteLine("* Health: " + HP);
-            Console.WriteLine("* Armour: " + defense);
-            Console.WriteLine("* Level: " + Level);
-            Console.WriteLine("* XP: " + XP);
-            Console.WriteLine("_____________________");
-        }
-        
-        //On Sleep regeining some energy
+        // On Sleep regaining some energy
         public int Player_EnergySleep(int currentEnergy)
         {
             int onSleepRegain = 50;
@@ -79,15 +33,12 @@ namespace Survival_ConsoleGame
             if (regainedEnergy > 100)
             {
                 regainedEnergy = 100;
-                return regainedEnergy;
             }
-            else
-            {
-                return regainedEnergy;
-            }
+
+            return regainedEnergy;
         }
 
-        //On Sleep regeining some health
+        // On Sleep regaining some health
         public int Player_HealthSleep(int currentHealth)
         {
             int onSleepRegain = 35;
@@ -97,24 +48,20 @@ namespace Survival_ConsoleGame
             if (regainedHealth > 100)
             {
                 regainedHealth = 100;
-                return regainedHealth;
             }
-            else
-            {
-                return regainedHealth;
-            }
+
+            return regainedHealth;
         }
 
         public void Start_PlayerMenu()
-        {
-            Console.WriteLine("Tip: So , here are your options or freedom for what you can do or where to go");
+        {          
+            Console.WriteLine("Tip: So, here are your options or freedom for what you can do or where to go");
 
-            Console.WriteLine("~1.Your Hut");
-            Console.WriteLine("~2.Forest");
-            Console.WriteLine("~3.Mountains");
-            Console.WriteLine("~4.City");
-            Console.WriteLine("~5.Player");
-
+            Console.WriteLine("~1. Your Hut");
+            Console.WriteLine("~2. Forest");
+            Console.WriteLine("~3. Mountains");
+            Console.WriteLine("~4. City");
+            Console.WriteLine("~5. Player");
 
             Console.WriteLine();
             Console.WriteLine("> ");
@@ -122,7 +69,6 @@ namespace Survival_ConsoleGame
 
             switch (n)
             {
-
                 case 1:
                     Console.Clear();
                    // destination_HUT.Destination_HutMenu();
@@ -130,7 +76,7 @@ namespace Survival_ConsoleGame
 
                 case 2:
                     Console.Clear();
-                    destination_FOREST = new Forest(engine);
+                    destination_FOREST = new Forest(playerInventory, this); // Corrected variable name
                     destination_FOREST.Destination_ForestMenu();
                     break;
 
@@ -138,7 +84,6 @@ namespace Survival_ConsoleGame
                     Console.Clear();
                     destination_MOUNTAINS.Destination_MountainsMenu();
                     break;
-
             }
         }
     }

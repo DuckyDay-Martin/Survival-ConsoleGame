@@ -8,31 +8,48 @@ namespace Survival_ConsoleGame.Player
 {
     internal class PlayerInventory
     {
-        private List<int> inventory;
+        private List<int> inventory = new List<int>();
+        private Dictionary<int, string> itemIndexer = new Dictionary<int, string>();
+
         public PlayerInventory()
-        { 
-            inventory = new List<int>();    
+        {
+            inventory = new List<int>();
+            itemIndexer = new()
+            {
+                [1] = "Wood",
+                [2] = "Rock",
+                [3] = "Plastic",
+                [4] = "Iron",
+                [5] = "Grass",
+                [6] = "Meat"
+            };
+
         }
 
-        
-        
-        public void Add_ItemToInventory(int itemID, int numberOfItemsBeingAdded)
+        public void AddItem(int item,int count)
         {
-            for (int i = 0; i < numberOfItemsBeingAdded; i++)
-            { 
-                 inventory.Add(itemID);
-            }               
+            for (int i = 0; i < count; i++) 
+            {
+                inventory.Add(item);
+            }
+        }
+        
+        public void RemoveItem(int item) 
+        {
+            inventory.Remove(item);
         }
 
-        public void Check_PlayerInventory(List<int> inventory, Dictionary<int, string> availableResources)
+        public void DisplayItems()
         {
-            string checkedItem;
+            Console.WriteLine("Inventory: ");
+            string itemName;
+
             foreach (int item in inventory)
             {
-                if (inventory.Contains(item))
+                if (itemIndexer.ContainsKey(item))
                 {
-                    checkedItem = availableResources.GetValueOrDefault(item);
-                    Console.WriteLine(checkedItem);
+                    itemName = (string)itemIndexer[item];
+                    Console.WriteLine(" - " + itemName);
                 }
             }
         }
