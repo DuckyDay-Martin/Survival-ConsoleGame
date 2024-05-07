@@ -24,9 +24,9 @@ namespace Survival_ConsoleGame.Destinations
 
             Console.WriteLine("Tip: In those cold mountains you can try to get some resources but you need to be strong because it's dangerouse");
             Console.WriteLine();
-            Console.WriteLine("~1.Mine (+Iron,+Rocks, -energy)");
-            Console.WriteLine("~2.Collect Water (+Water)");
-            Console.WriteLine("~3.Hunt Wolfs (+++Meat, -Health, --Energy)");
+            Console.WriteLine("~1.Mine (Iron(+1),Rocks(+3), energy(-40))");
+            Console.WriteLine("~2.Collect Water (Water(+2))");
+            Console.WriteLine("~3.Hunt Wolfs (Meat(+6), Health(-60), Energy(-70))");
             Console.WriteLine("~4.Display Inventory");
             Console.WriteLine("~5.Go Back");
             int n;
@@ -40,6 +40,8 @@ namespace Survival_ConsoleGame.Destinations
                 switch (n)
                 {
                     case 1:
+                        Console.WriteLine();
+                        Console.WriteLine("+2 Meat was added to your inventory! ");
                         Mine(playerInventory);
                         break;
 

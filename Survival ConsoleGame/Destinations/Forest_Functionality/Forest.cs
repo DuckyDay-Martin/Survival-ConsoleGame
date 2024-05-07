@@ -25,10 +25,11 @@ namespace Survival_ConsoleGame.Destinations
         public void Destination_ForestMenu()
         {
                 Console.WriteLine("Tip: Here in the forest you can be chill and just get tired a bit but that's all");
+
                 Console.WriteLine();
-                Console.WriteLine("~1.Hunt Deers (+Meat(2), -energy(50))");
-                Console.WriteLine("~2.Chop Trees (+Wood(2), -energy(40))");
-                Console.WriteLine("~3.Collect Grass (+Grass(5), -energy(10))");
+                Console.WriteLine("~1.Hunt Deers (Meat(+2), energy(-50))");
+                Console.WriteLine("~2.Chop Trees (Wood(+3), energy(+40))");
+                Console.WriteLine("~3.Collect Grass (Grass(+5), energy(-10))");
                 Console.WriteLine("~4.Check Inventory");
                 Console.WriteLine("~5.Go Back");
                 int n;
@@ -41,16 +42,20 @@ namespace Survival_ConsoleGame.Destinations
                 switch (n)
                 {
                     case 1:
+                        Console.WriteLine();
+                        Console.WriteLine("+2 Meat was added to your inventory! ");
                         Hunt(playerInventory);                       
                         break;
 
                     case 2:
-                       
+                        Console.WriteLine();
+                        Console.WriteLine("+3 Wood was added to your inventory! ");
                         ChopTrees(playerInventory);
                         break;
 
                     case 3:
-                       
+                        Console.WriteLine();
+                        Console.WriteLine("+5 Grass was added to your inventory! ");
                         CollectGrass(playerInventory);
                         break;
 
@@ -60,6 +65,7 @@ namespace Survival_ConsoleGame.Destinations
                         break;
 
                     case 5:
+                        Console.Clear();
                         player.Start_PlayerMenu();
                         break;
                 }

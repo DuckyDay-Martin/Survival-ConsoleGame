@@ -24,17 +24,15 @@ public class InventorySystem
 
     public void DisplayInventory()
     {
-        Console.WriteLine("Inventory:");
-        string itemName;
-        foreach (int item in inventory)
-        { 
-          if (itemIndexer.ContainsKey(item))
-          {
-                itemName = (string)itemIndexer[item];
-                Console.WriteLine(itemName);
-          }
+        var groupedItems = inventory
+                           .GroupBy(item => itemIndexer[item])
+                           .Select(g => new { Name = g.Key, Count = g.Count()});
+
+        foreach (var itemName in groupedItems)
+        {
+            Console.WriteLine($"({itemName.Count}) {itemName.Name}");
         }
-    }
+    }                      
 }
 
 class Program
@@ -48,7 +46,7 @@ class Program
         forest.ChopTrees(inventorySystem);
         // Displaying the inventory
         inventorySystem.AddItem(1);
-
+        inventorySystem.AddItem(2);
         inventorySystem.DisplayInventory();
     }
 
@@ -57,10 +55,7 @@ class Program
     public static void Hunt(InventorySystem inventorySystem)
     {
        
-        inventorySystem.AddItem(1);
-        inventorySystem.AddItem(2);
-
-        
+       
     }
 }
 
@@ -69,7 +64,7 @@ public class Lake
     
     public void CollectWater(InventorySystem inventorySystem)
     {
-        inventorySystem.AddItem(2);
+        
         Console.WriteLine("WaterActually:)");
     }
 
@@ -80,7 +75,6 @@ public class Forest
 {
    public void ChopTrees(InventorySystem inventorySystem)
     {
-        inventorySystem.AddItem(2);
-        inventorySystem.AddItem(2);
+       
     }
 }

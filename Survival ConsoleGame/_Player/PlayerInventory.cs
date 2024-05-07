@@ -43,15 +43,15 @@ namespace Survival_ConsoleGame.Player
         public void DisplayItems()
         {
             Console.WriteLine("Inventory: ");
-            string itemName;
 
-            foreach (int item in inventory)
+            //itemIndexer[item] is giving me the name of the value this item is associated with
+            var groupedItems = inventory
+                               .GroupBy(item => itemIndexer[item])
+                               .Select(g => new { Name = g.Key, Count = g.Count() });
+
+            foreach (var item in groupedItems)
             {
-                if (itemIndexer.ContainsKey(item))
-                {
-                    itemName = (string)itemIndexer[item];
-                    Console.WriteLine(" - " + itemName);
-                }
+                Console.WriteLine($"|{item.Count}| {item.Name}");
             }
         }
     }
