@@ -13,7 +13,7 @@ namespace Survival_ConsoleGame
             int n = int.Parse(Console.ReadLine());
             PlayerInventory playerInventory = new PlayerInventory();
             Engine engine = new Engine();
-            _Player player = new _Player(playerInventory, 100);
+            _Player player = new _Player(playerInventory, 100, 0, 100);
 
             switch (n)
             {

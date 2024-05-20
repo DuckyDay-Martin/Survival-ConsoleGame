@@ -12,25 +12,74 @@ namespace Survival_ConsoleGame
     internal class _Player
     {
         Engine engine = new Engine();
-        
+
         Forest destination_FOREST;
         Mountains destination_MOUNTAINS;
         PlayerInventory playerInventory;
 
+        //Player needs energy implemented, the half is done
 
-        private int maxHealth;
+        private int maxHealth;//Max Health will be 100
         private int currentHealth;
 
-        
-        public _Player(PlayerInventory inventory, int maxHealth)
+        private int startingXP;//Starting XP will be zero//Will do later in the game...
+        private int currentXP;
+
+        private int currentEnergy;
+        private int maxEnergy;//Max Energy Will be 100
+        public _Player(PlayerInventory inventory, int maxHealth, int startingXP, int maxEnergy)
         {
             playerInventory = inventory;
             destination_FOREST = new Forest(playerInventory, this);
             destination_MOUNTAINS = new Mountains(playerInventory, this);
+
             this.maxHealth = maxHealth;
             this.currentHealth = maxHealth;
+
+            this.startingXP = startingXP;
+            this.currentXP = startingXP;
+
+            this.maxEnergy = maxEnergy;
+            this.currentEnergy = maxEnergy;
         }
 
+        //Energy
+        public void Player_EnergyDrained(int energyAmount)
+        {
+            currentEnergy -= energyAmount;
+        }
+
+        public void Player_EnergyReceived(int energyAmount)
+        {
+            if (currentEnergy > maxEnergy)
+            {
+                currentEnergy = maxEnergy;
+            }
+            else
+            {
+                currentEnergy += energyAmount;
+            }
+
+        }
+
+        public void Player_UpdateEnergy(int energyDrained, int energyReceived)
+        {
+            Player_EnergyDrained(energyDrained);
+            Player_EnergyReceived(energyReceived);
+        }
+
+        public int Player_DisplayEnergy()
+        {
+            if (currentEnergy < 0)
+            {
+                Console.Clear();
+                Player_UpdateHealth(15, 0);
+                Console.WriteLine("You are getting tired...a lot(-15HP)\nTry to get back home and rest for a while!");
+            }
+            return currentEnergy;
+        }
+
+        //Health
         public void Player_TakeDamage(int damageTaken)
         {           
                 currentHealth -= damageTaken;          
@@ -53,7 +102,7 @@ namespace Survival_ConsoleGame
             Player_TakeDamage(damageAmount);
             Player_Heal(healAmount);
         }
-        public int DisplayHealth()
+        public int Player_DisplayHealth()
         {
             if (currentHealth < 0)
             {
@@ -64,36 +113,7 @@ namespace Survival_ConsoleGame
             return currentHealth;
         }
 
-        // On Sleep regaining some energy
-        public int Player_EnergySleep(int currentEnergy)
-        {
-            int onSleepRegain = 50;
-
-            int regainedEnergy = onSleepRegain + currentEnergy;
-
-            if (regainedEnergy > 100)
-            {
-                regainedEnergy = 100;
-            }
-
-            return regainedEnergy;
-        }
-
-        // On Sleep regaining some health
-        public int Player_HealthSleep(int currentHealth)
-        {
-            int onSleepRegain = 35;
-
-            int regainedHealth = onSleepRegain + currentHealth;
-
-            if (regainedHealth > 100)
-            {
-                regainedHealth = 100;
-            }
-
-            return regainedHealth;
-        }
-
+       //Menu
         public void Start_PlayerMenu()
         {          
             Console.WriteLine("Tip: So, here are your options or freedom for what you can do or where to go");

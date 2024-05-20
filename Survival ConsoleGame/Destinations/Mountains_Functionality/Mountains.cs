@@ -19,12 +19,14 @@ namespace Survival_ConsoleGame.Destinations
             player = playerRef;
         }
 
+        //Player needs energy implemented, the half is done
         public void Destination_MountainsMenu()
         {
             //Clear the Console every time to update the current health status
             Console.WriteLine("Tip: In those cold mountains you can try to get some resources but you need to be strong because it's dangerouse");
             Console.WriteLine();
-            Console.WriteLine($"Health: {player.DisplayHealth()} ");
+            Console.WriteLine($"Health: {player.Player_DisplayHealth()} ");
+            Console.WriteLine($"Energy: {player.Player_DisplayEnergy()}");
             Console.WriteLine();
             Console.WriteLine("~1.Mine (Iron(+1),Rocks(+3), energy(-40))");
             Console.WriteLine("~2.Collect Water (Water(+1))");

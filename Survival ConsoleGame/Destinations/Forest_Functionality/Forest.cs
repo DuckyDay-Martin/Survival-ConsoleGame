@@ -26,11 +26,12 @@ namespace Survival_ConsoleGame.Destinations
         {
                 Console.WriteLine("Tip: Here in the forest you can be chill and just get tired a bit but that's all");
                 Console.WriteLine();
-                Console.WriteLine($"Health: {player.DisplayHealth()}");
+                Console.WriteLine($"Health: {player.Player_DisplayHealth()}");
+                Console.WriteLine($"Energy: {player.Player_DisplayEnergy()}");
                 Console.WriteLine();
-                Console.WriteLine("~1.Hunt Deers (Meat(+2), energy(-50))");
-                Console.WriteLine("~2.Chop Trees (Wood(+3), energy(-40))");
-                Console.WriteLine("~3.Collect Grass (Grass(+5), energy(-10))");
+                Console.WriteLine("~1.Hunt Deers (Meat(+2), Energy(-50))");
+                Console.WriteLine("~2.Chop Trees (Wood(+3), Energy(-40))");
+                Console.WriteLine("~3.Collect Grass (Grass(+5), Energy(-10))");
                 Console.WriteLine("~4.Check Inventory");
                 Console.WriteLine("~5.Go Back");
                 int n;
@@ -45,19 +46,28 @@ namespace Survival_ConsoleGame.Destinations
                     case 1:
                         Console.WriteLine();
                         Console.WriteLine("+2 Meat was added to your inventory! ");
-                        Hunt(playerInventory);                       
+                        player.Player_UpdateEnergy(50, 0);
+                        Hunt(playerInventory);
+                        Console.Clear();
+                        Destination_ForestMenu();
                         break;
 
                     case 2:
                         Console.WriteLine();
                         Console.WriteLine("+3 Wood was added to your inventory! ");
+                        player.Player_UpdateEnergy(40, 0);
                         ChopTrees(playerInventory);
+                        Console.Clear();
+                        Destination_ForestMenu();
                         break;
 
                     case 3:
                         Console.WriteLine();
                         Console.WriteLine("+5 Grass was added to your inventory! ");
+                        player.Player_UpdateEnergy(10, 0);
                         CollectGrass(playerInventory);
+                        Console.Clear();
+                        Destination_ForestMenu();
                         break;
 
                     case 4:
