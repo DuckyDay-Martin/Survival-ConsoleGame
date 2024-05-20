@@ -25,10 +25,11 @@ namespace Survival_ConsoleGame.Destinations
         public void Destination_ForestMenu()
         {
                 Console.WriteLine("Tip: Here in the forest you can be chill and just get tired a bit but that's all");
-
+                Console.WriteLine();
+                Console.WriteLine($"Health: {player.DisplayHealth()}");
                 Console.WriteLine();
                 Console.WriteLine("~1.Hunt Deers (Meat(+2), energy(-50))");
-                Console.WriteLine("~2.Chop Trees (Wood(+3), energy(+40))");
+                Console.WriteLine("~2.Chop Trees (Wood(+3), energy(-40))");
                 Console.WriteLine("~3.Collect Grass (Grass(+5), energy(-10))");
                 Console.WriteLine("~4.Check Inventory");
                 Console.WriteLine("~5.Go Back");

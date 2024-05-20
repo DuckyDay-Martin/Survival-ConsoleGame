@@ -21,11 +21,13 @@ namespace Survival_ConsoleGame.Destinations
 
         public void Destination_MountainsMenu()
         {
-
+            //Clear the Console every time to update the current health status
             Console.WriteLine("Tip: In those cold mountains you can try to get some resources but you need to be strong because it's dangerouse");
             Console.WriteLine();
+            Console.WriteLine($"Health: {player.DisplayHealth()} ");
+            Console.WriteLine();
             Console.WriteLine("~1.Mine (Iron(+1),Rocks(+3), energy(-40))");
-            Console.WriteLine("~2.Collect Water (Water(+2))");
+            Console.WriteLine("~2.Collect Water (Water(+1))");
             Console.WriteLine("~3.Hunt Wolfs (Meat(+6), Health(-60), Energy(-70))");
             Console.WriteLine("~4.Display Inventory");
             Console.WriteLine("~5.Go Back");
@@ -46,13 +48,18 @@ namespace Survival_ConsoleGame.Destinations
                         break;
 
                     case 2:
-
+                        Console.WriteLine();
+                        Console.WriteLine("+1 Water Bottle was added to your inventory! ");
                         CollectWater(playerInventory);
                         break;
 
                     case 3:
-
+                        Console.WriteLine();
+                        Console.WriteLine("+6 Meat was added to your inventory! ");
+                        player.Player_UpdateHealth(60, 0);
                         HuntWolfes(playerInventory);
+                        Console.Clear();
+                        Destination_MountainsMenu();
                         break;
                     case 4:
 

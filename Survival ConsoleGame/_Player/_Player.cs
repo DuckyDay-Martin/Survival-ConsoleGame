@@ -17,11 +17,51 @@ namespace Survival_ConsoleGame
         Mountains destination_MOUNTAINS;
         PlayerInventory playerInventory;
 
-        public _Player(PlayerInventory inventory)
+
+        private int maxHealth;
+        private int currentHealth;
+
+        
+        public _Player(PlayerInventory inventory, int maxHealth)
         {
             playerInventory = inventory;
             destination_FOREST = new Forest(playerInventory, this);
             destination_MOUNTAINS = new Mountains(playerInventory, this);
+            this.maxHealth = maxHealth;
+            this.currentHealth = maxHealth;
+        }
+
+        public void Player_TakeDamage(int damageTaken)
+        {           
+                currentHealth -= damageTaken;          
+        }
+
+        public void Player_Heal(int healAmount)
+        { 
+            if (currentHealth > maxHealth) 
+            {
+                currentHealth = maxHealth;
+            }
+            else
+            {
+                currentHealth += healAmount;
+            }
+        }
+
+        public void Player_UpdateHealth(int damageAmount, int healAmount)
+        {
+            Player_TakeDamage(damageAmount);
+            Player_Heal(healAmount);
+        }
+        public int DisplayHealth()
+        {
+            if (currentHealth < 0)
+            {
+                Console.Clear();
+                currentHealth = 0;
+                Console.WriteLine("Game Over!\n You couldn't make it this time...");
+            }
+            return currentHealth;
         }
 
         // On Sleep regaining some energy
