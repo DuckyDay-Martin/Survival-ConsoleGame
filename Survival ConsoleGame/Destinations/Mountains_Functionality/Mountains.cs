@@ -19,20 +19,22 @@ namespace Survival_ConsoleGame.Destinations
             player = playerRef;
         }
 
-        //Player needs energy implemented, the half is done
+        
         public void Destination_MountainsMenu()
         {
-            //Clear the Console every time to update the current health status
+            //Clear the Console every time to update the current screen status
             Console.WriteLine("Tip: In those cold mountains you can try to get some resources but you need to be strong because it's dangerouse");
             Console.WriteLine();
             Console.WriteLine($"Health: {player.Player_DisplayHealth()} ");
             Console.WriteLine($"Energy: {player.Player_DisplayEnergy()}");
             Console.WriteLine();
-            Console.WriteLine("~1.Mine (Iron(+1),Rocks(+3), energy(-40))");
+            Console.WriteLine("~1.Mine (Iron(+1),Rocks(+3), Energy(-40))");
             Console.WriteLine("~2.Collect Water (Water(+1))");
             Console.WriteLine("~3.Hunt Wolfs (Meat(+6), Health(-60), Energy(-70))");
             Console.WriteLine("~4.Display Inventory");
             Console.WriteLine("~5.Go Back");
+            MountainsView();
+            Console.WriteLine();
             int n;
             Console.WriteLine();
             Console.WriteLine(">");
@@ -45,8 +47,11 @@ namespace Survival_ConsoleGame.Destinations
                 {
                     case 1:
                         Console.WriteLine();
-                        Console.WriteLine("+2 Meat was added to your inventory! ");
+                        Console.WriteLine("+1 Iron & +3 Rocks were added to your inventory! ");
+                        player.Player_UpdateEnergy(40, 0);
                         Mine(playerInventory);
+                        Console.Clear();
+                        Destination_MountainsMenu();
                         break;
 
                     case 2:
@@ -59,6 +64,7 @@ namespace Survival_ConsoleGame.Destinations
                         Console.WriteLine();
                         Console.WriteLine("+6 Meat was added to your inventory! ");
                         player.Player_UpdateHealth(60, 0);
+                        player.Player_UpdateEnergy(70, 0);
                         HuntWolfes(playerInventory);
                         Console.Clear();
                         Destination_MountainsMenu();
@@ -79,6 +85,7 @@ namespace Survival_ConsoleGame.Destinations
         public void Mine(PlayerInventory playerInventory)
         {
             playerInventory.AddItem(4, 2);
+            playerInventory.AddItem(2, 3);
         }
 
         //Collect Water and get +1 Bottle of Water
@@ -91,6 +98,27 @@ namespace Survival_ConsoleGame.Destinations
         public void HuntWolfes(PlayerInventory playerInventory)
         {
             playerInventory.AddItem(6, 5);
+        }
+
+        public void MountainsView()
+        {
+            Console.WriteLine(
+            "                  ^^^                     ^^^^        \n" +
+            "                 /   \\                  /    \\      \n" +
+            "                /     \\                /      \\     \n" +
+            "               /       \\              /        \\    \n" +
+            "              /         \\            /          \\   \n" +
+            "             /___________\\          /____________\\  \n" +
+            "            /\\           /\\       /\\            /\\      \n" +
+            "           /  \\         /  \\     /  \\          /  \\     \n" +
+            "          /    \\       /    \\   /    \\        /    \\    \n" +
+            "         /      \\     /      \\ /      \\      /      \\   \n" +
+            "        /        \\   /        \\        \\    /        /\\ \n" +
+            "       /          \\ /          \\        \\  /        /  \\   \n" +
+            "      /            \\            \\        /\\        /    \\  \n" +
+            "     /              \\            \\      /  \\      /      \\ \n" +
+            "    /________________\\____________\\____/____\\____/________\\\n"
+                                                                                 );
         }
     }
 }

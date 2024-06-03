@@ -9,7 +9,7 @@ namespace Survival_ConsoleGame.Player
     internal class PlayerInventory
     {
         private List<int> inventory = new List<int>();
-        private Dictionary<int, string> itemIndexer = new Dictionary<int, string>();
+        private Dictionary<int, string> itemIndexer = new Dictionary<int, string>();      
 
         public PlayerInventory()
         {
@@ -22,9 +22,20 @@ namespace Survival_ConsoleGame.Player
                 [4] = "Iron",
                 [5] = "Grass",
                 [6] = "Meat",
-                [7] = "Water"
+                [7] = "Water",
+                //Craftable items
+                [8] = "Knife",
+                [9] = "Axe",
+                [10] = "Lighter",
+                [11] = "Rope",
+                [12] = "Pickaxe"
             };
+                      
+        }
 
+        public bool HasItem(int item)
+        {           
+           return inventory.Contains(item);
         }
 
         public void AddItem(int item,int count)

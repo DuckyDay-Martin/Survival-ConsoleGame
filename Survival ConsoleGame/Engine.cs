@@ -13,10 +13,12 @@ namespace Survival_ConsoleGame
       
         public void Start_Tutorial()
         {
+            string nickname;
             Console.WriteLine("Before we proceed , please enter you nickname...");
+            nickname = Console.ReadLine();
             Console.WriteLine();       
             Console.WriteLine();
-            Console.WriteLine("Hello and welcome to the ~VOID~");
+            Console.WriteLine($"Hello and welcome {nickname} to the ~VOID~");
             Console.WriteLine("A survival console ,menu based mini game");
             Console.WriteLine("Basically you will have the option to 1.Craft 2.Fight 3.Farm Materials 4.Sleep and other stuff");
             Console.WriteLine("On every player menu page there will be a brief explanation what the option is doing so no worries");

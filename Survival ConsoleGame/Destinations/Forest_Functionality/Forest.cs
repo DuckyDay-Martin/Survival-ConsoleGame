@@ -34,6 +34,8 @@ namespace Survival_ConsoleGame.Destinations
                 Console.WriteLine("~3.Collect Grass (Grass(+5), Energy(-10))");
                 Console.WriteLine("~4.Check Inventory");
                 Console.WriteLine("~5.Go Back");
+                ForestView();
+                Console.WriteLine();
                 int n;
                 Console.WriteLine();
                 Console.WriteLine(">   ");
@@ -45,28 +47,25 @@ namespace Survival_ConsoleGame.Destinations
                 {
                     case 1:
                         Console.WriteLine();
-                        Console.WriteLine("+2 Meat was added to your inventory! ");
                         player.Player_UpdateEnergy(50, 0);
-                        Hunt(playerInventory);
                         Console.Clear();
+                        Hunt(playerInventory);
                         Destination_ForestMenu();
                         break;
 
                     case 2:
                         Console.WriteLine();
-                        Console.WriteLine("+3 Wood was added to your inventory! ");
                         player.Player_UpdateEnergy(40, 0);
+                        Console.Clear();                                         
                         ChopTrees(playerInventory);
-                        Console.Clear();
                         Destination_ForestMenu();
                         break;
 
                     case 3:
                         Console.WriteLine();
-                        Console.WriteLine("+5 Grass was added to your inventory! ");
                         player.Player_UpdateEnergy(10, 0);
-                        CollectGrass(playerInventory);
                         Console.Clear();
+                        CollectGrass(playerInventory);
                         Destination_ForestMenu();
                         break;
 
@@ -87,20 +86,39 @@ namespace Survival_ConsoleGame.Destinations
         public void Hunt(PlayerInventory playerInventory)
         {
             playerInventory.AddItem(6, 2);
+            Console.WriteLine(">> +2 Meat was added to your inventory! <<");
+            Console.WriteLine();
         }
 
         //Chopping Trees get +3 Wood
         public void ChopTrees(PlayerInventory playerInventory)
         {
             playerInventory.AddItem(1, 3);
+            Console.WriteLine(">> +3 Wood was added to your inventory! <<");
+            Console.WriteLine();
         }
 
         //Collect Grass get +5 Grass
         public void CollectGrass(PlayerInventory playerInventory)
         {
             playerInventory.AddItem(5, 5);
+            Console.WriteLine(">> +5 Grass was added to your inventory! <<");
+            Console.WriteLine();
         }
 
+        public void ForestView()
+        {
+            Console.WriteLine(
+        "         /\\        /\\        /\\      \n" +
+        "        /  \\      /  \\      /  \\     \n" +
+        "       /    \\    /    \\    /    \\    \n" +
+        "      /      \\  /      \\  /      \\   \n" +
+        "     /________\\/________\\/________\\  \n" +
+        "         ||         ||         ||       \n" +
+        "         ||         ||         ||       \n" +
+        "         ||         ||         ||       \n"
+                                                    );
 
+        }
     }
 }

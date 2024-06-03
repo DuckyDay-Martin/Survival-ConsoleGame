@@ -16,6 +16,7 @@ namespace Survival_ConsoleGame
         Forest destination_FOREST;
         Mountains destination_MOUNTAINS;
         PlayerInventory playerInventory;
+        Hut destination_HUT;
 
         //Player needs energy implemented, the half is done
 
@@ -32,6 +33,7 @@ namespace Survival_ConsoleGame
             playerInventory = inventory;
             destination_FOREST = new Forest(playerInventory, this);
             destination_MOUNTAINS = new Mountains(playerInventory, this);
+            destination_HUT = new Hut(playerInventory, this);
 
             this.maxHealth = maxHealth;
             this.currentHealth = maxHealth;
@@ -53,7 +55,7 @@ namespace Survival_ConsoleGame
         {
             if (currentEnergy > maxEnergy)
             {
-                currentEnergy = maxEnergy;
+                currentEnergy = 100;
             }
             else
             {
@@ -74,7 +76,9 @@ namespace Survival_ConsoleGame
             {
                 Console.Clear();
                 Player_UpdateHealth(15, 0);
-                Console.WriteLine("You are getting tired...a lot(-15HP)\nTry to get back home and rest for a while!");
+                Console.WriteLine("--> You are getting tired...a lot(-15HP)\n--> Try to get back home and rest for a while!");
+                Console.WriteLine("Health: " + Player_DisplayHealth());
+                currentEnergy = 0;
             }
             return currentEnergy;
         }
@@ -89,7 +93,7 @@ namespace Survival_ConsoleGame
         { 
             if (currentHealth > maxHealth) 
             {
-                currentHealth = maxHealth;
+                currentHealth = 100;
             }
             else
             {
@@ -132,7 +136,7 @@ namespace Survival_ConsoleGame
             {
                 case 1:
                     Console.Clear();
-                   // destination_HUT.Destination_HutMenu();
+                    destination_HUT.Destination_HutMenu();
                     break;
 
                 case 2:
