@@ -16,6 +16,11 @@ namespace Survival_ConsoleGame.Player
             inventory = new List<int>();
             itemIndexer = new()
             {
+                [13] = "Apples",
+                [14] = "Berries",
+                [15] = "Mushrooms",
+                [16] = "Fish",
+                [17] = "Herbs",
                 [1] = "Wood",
                 [2] = "Rock",
                 [3] = "Plastic",
@@ -28,7 +33,12 @@ namespace Survival_ConsoleGame.Player
                 [9] = "Axe",
                 [10] = "Lighter",
                 [11] = "Rope",
-                [12] = "Pickaxe"
+                [12] = "Pickaxe",
+                //Cookable items
+                [18] = "Cooked Meat",
+                [19] = "Grilled Fish",
+                [20] = "Fruit Salad",
+                [21] = "Stew"
             };
                       
         }

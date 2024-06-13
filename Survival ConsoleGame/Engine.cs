@@ -16,8 +16,8 @@ namespace Survival_ConsoleGame
             string nickname;
             Console.WriteLine("Before we proceed , please enter you nickname...");
             nickname = Console.ReadLine();
+            Console.Clear();
             Console.WriteLine();       
-            Console.WriteLine();
             Console.WriteLine($"Hello and welcome {nickname} to the ~VOID~");
             Console.WriteLine("A survival console ,menu based mini game");
             Console.WriteLine("Basically you will have the option to 1.Craft 2.Fight 3.Farm Materials 4.Sleep and other stuff");

@@ -29,11 +29,14 @@ namespace Survival_ConsoleGame.Destinations
                 Console.WriteLine($"Health: {player.Player_DisplayHealth()}");
                 Console.WriteLine($"Energy: {player.Player_DisplayEnergy()}");
                 Console.WriteLine();
-                Console.WriteLine("~1.Hunt Deers (Meat(+2), Energy(-50))");
+                Console.WriteLine("~1.Hunt Deers (Meat(+2), Energy(-35))");
                 Console.WriteLine("~2.Chop Trees (Wood(+3), Energy(-40))");
                 Console.WriteLine("~3.Collect Grass (Grass(+5), Energy(-10))");
-                Console.WriteLine("~4.Check Inventory");
-                Console.WriteLine("~5.Go Back");
+                Console.WriteLine("~4.Collect some Apples(Apples(+3), Energy(-5))");
+                Console.WriteLine("~5.Collect some Berries(Berries(+2 packs), Energy(-10))");
+                Console.WriteLine("~6.Collect some Mushrooms(Mushrooms(+5), Energy(-15))");
+                Console.WriteLine("~7.Check Inventory");
+                Console.WriteLine("~8.Go Back");
                 ForestView();
                 Console.WriteLine();
                 int n;
@@ -47,7 +50,7 @@ namespace Survival_ConsoleGame.Destinations
                 {
                     case 1:
                         Console.WriteLine();
-                        player.Player_UpdateEnergy(50, 0);
+                        player.Player_UpdateEnergy(35, 0);
                         Console.Clear();
                         Hunt(playerInventory);
                         Destination_ForestMenu();
@@ -70,11 +73,35 @@ namespace Survival_ConsoleGame.Destinations
                         break;
 
                     case 4:
-
-                        playerInventory.DisplayItems();
+                        Console.WriteLine();
+                        player.Player_UpdateEnergy(5, 0);
+                        Console.Clear();
+                        CollectApples(playerInventory);
+                        Destination_ForestMenu();
                         break;
 
                     case 5:
+                        Console.WriteLine();
+                        player.Player_UpdateEnergy(10, 0);
+                        Console.Clear();
+                        CollectBerries(playerInventory); 
+                        Destination_ForestMenu();
+                        break;
+
+                    case 6:
+                        Console.WriteLine();
+                        player.Player_UpdateEnergy(15, 0);
+                        Console.Clear();
+                        CollectMushrooms(playerInventory);
+                        Destination_ForestMenu();
+                        break;
+
+                    case 7:
+                        Console.WriteLine();
+                        playerInventory.DisplayItems();
+                        break;
+                    
+                    case 8:
                         Console.Clear();
                         player.Start_PlayerMenu();
                         break;
@@ -104,6 +131,26 @@ namespace Survival_ConsoleGame.Destinations
             playerInventory.AddItem(5, 5);
             Console.WriteLine(">> +5 Grass was added to your inventory! <<");
             Console.WriteLine();
+        }
+
+        public void CollectApples(PlayerInventory playerInventory) 
+        {
+            playerInventory.AddItem(13, 3);
+            Console.WriteLine(">> +3 Apples were added to your inventory! <<");
+            Console.WriteLine();
+        }
+
+        public void CollectBerries(PlayerInventory playerInventory)
+        {
+            playerInventory.AddItem(14, 2);
+            Console.WriteLine(">> +2 Packs of Berries were added to your inventory! <<");
+            Console.WriteLine();
+        }
+
+        public void CollectMushrooms(PlayerInventory playerInventory)
+        {
+            playerInventory.AddItem(15, 5);
+            Console.WriteLine(">> +5 Mushrooms were added to your inventory! <<");
         }
 
         public void ForestView()

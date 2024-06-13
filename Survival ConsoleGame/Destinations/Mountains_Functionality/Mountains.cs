@@ -75,6 +75,7 @@ namespace Survival_ConsoleGame.Destinations
                         break;
 
                     case 5:
+                        Console.Clear();
                         player.Start_PlayerMenu();
                         break;
                 }

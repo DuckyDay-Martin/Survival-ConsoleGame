@@ -14,12 +14,14 @@ namespace Survival_ConsoleGame.Destinations
          PlayerInventory playerInventory;
          _Player player;
         Hut_CraftingTable craftingTable;
+        Hut_Oven oven;
 
         public Hut(PlayerInventory inventory, _Player playerRef)
         {
             playerInventory = inventory;
             player = playerRef;
             craftingTable = new Hut_CraftingTable(playerInventory, playerRef);
+            oven = new Hut_Oven(playerInventory, playerRef);
         }
 
         public void Destination_HutMenu()
@@ -32,7 +34,8 @@ namespace Survival_ConsoleGame.Destinations
             Console.WriteLine();
             Console.WriteLine("~1.Go to Bed(+100 Energy, +50 Health)");
             Console.WriteLine("~2.Crafting Table");
-            Console.WriteLine("~3.Go Back Outside. ");
+            Console.WriteLine("~3.Oven");
+            Console.WriteLine("~4.Go Back Outside. ");
             HutView();
             Console.WriteLine();
             Console.WriteLine(">");
@@ -58,6 +61,11 @@ namespace Survival_ConsoleGame.Destinations
                         break;
 
                     case 3:
+                        Console.Clear();
+                        oven.Hut_OvenView();
+                        break;
+
+                    case 4:
                         Console.Clear();
                         player.Start_PlayerMenu();
                         break;

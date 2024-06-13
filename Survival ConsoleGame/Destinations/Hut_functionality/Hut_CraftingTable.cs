@@ -13,7 +13,7 @@ namespace Survival_ConsoleGame.Destinations.Hut_functionality
 
         PlayerInventory playerInventory;
         _Player player;
-
+        
       
 
         public Hut_CraftingTable(PlayerInventory inventory, _Player playerRef)
