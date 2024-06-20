@@ -38,7 +38,8 @@ namespace Survival_ConsoleGame.Player
                 [18] = "Cooked Meat",
                 [19] = "Grilled Fish",
                 [20] = "Fruit Salad",
-                [21] = "Stew"
+                [21] = "Stew",
+                [22] = "Cooked Fish"
             };
                       
         }

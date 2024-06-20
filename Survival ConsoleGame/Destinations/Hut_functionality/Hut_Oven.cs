@@ -42,9 +42,12 @@ namespace Survival_ConsoleGame.Destinations.Hut_functionality
                               "~4.Stew(+ 45 HP)\n" +
                               "--> 1 Meat, 5 Herbs needed\n" +
                               "\n" +
-                              "~5. Inventory\n" +
+                              "~5.Cooked Fish(+ 30 HP)\n" +
+                              "--> 1 Fish needed\n" +
                               "\n" +
-                              "~6. Go Back\n" +
+                              "~6. Inventory\n" +
+                              "\n" +
+                              "~7. Go Back\n" +
                               "\n" +
                               "> ");
 
@@ -78,12 +81,17 @@ namespace Survival_ConsoleGame.Destinations.Hut_functionality
                         hut.IfCanCreateItem(playerInventory, 21, stewNeededItems);
 
                         break;
-                   
+
                     case 5:
-                        playerInventory.DisplayItems();
+                        int[] cookedFishNeededItems = { 16 };
+                        hut.IfCanCreateItem(playerInventory, 22, cookedFishNeededItems);
                         break;
 
                     case 6:
+                        playerInventory.DisplayItems();
+                        break;
+
+                    case 7:
                         Console.Clear();
                         player.Start_PlayerMenu();
                         break;
