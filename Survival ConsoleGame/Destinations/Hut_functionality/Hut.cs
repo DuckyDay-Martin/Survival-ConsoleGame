@@ -35,7 +35,8 @@ namespace Survival_ConsoleGame.Destinations
             Console.WriteLine("~1.Go to Bed(+100 Energy, +50 Health)");
             Console.WriteLine("~2.Crafting Table");
             Console.WriteLine("~3.Oven");
-            Console.WriteLine("~4.Go Back Outside. ");
+            Console.WriteLine("~4.Check Inventory");
+            Console.WriteLine("~5.Go Back Outside. ");
             HutView();
             Console.WriteLine();
             Console.WriteLine(">");
@@ -66,6 +67,11 @@ namespace Survival_ConsoleGame.Destinations
                         break;
 
                     case 4:
+                        Console.WriteLine();
+                        playerInventory.DisplayItems();
+                        break;
+
+                    case 5:
                         Console.Clear();
                         player.Start_PlayerMenu();
                         break;

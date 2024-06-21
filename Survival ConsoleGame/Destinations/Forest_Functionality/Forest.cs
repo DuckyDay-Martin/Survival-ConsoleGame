@@ -35,7 +35,7 @@ namespace Survival_ConsoleGame.Destinations
                 Console.WriteLine("~4.Collect some Apples(Apples(+3), Energy(-5))");
                 Console.WriteLine("~5.Collect some Berries(Berries(+2 packs), Energy(-10))");
                 Console.WriteLine("~6.Collect some Mushrooms(Mushrooms(+5), Energy(-15))");
-                Console.WriteLine("~7.Check Inventory");
+                Console.WriteLine("~7.Check Backpack");
                 Console.WriteLine("~8.Go Back");
                 ForestView();
                 Console.WriteLine();
@@ -99,6 +99,24 @@ namespace Survival_ConsoleGame.Destinations
                     case 7:
                         Console.WriteLine();
                         playerInventory.DisplayItems();
+                        Console.WriteLine();
+                        Console.WriteLine("Use Items?");
+                        Console.WriteLine("1. Yep! ");
+                        Console.WriteLine("2. Continue the journey! ");
+                        Console.WriteLine();
+                        int nS = int.Parse(Console.ReadLine());
+                        switch (nS)
+                        {
+                            case 1:
+                                player.Player_UseItem(playerInventory);
+                                break;
+
+                            case 2:
+                                Console.Clear();
+                                Destination_ForestMenu();
+                                break;
+                        }
+
                         break;
                     
                     case 8:

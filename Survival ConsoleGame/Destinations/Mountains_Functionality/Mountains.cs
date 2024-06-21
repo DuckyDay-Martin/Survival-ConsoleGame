@@ -99,6 +99,7 @@ namespace Survival_ConsoleGame.Destinations
         {
             playerInventory.AddItem(4, 2);
             playerInventory.AddItem(2, 3);
+            Console.WriteLine("+1 Iron & +3 Rocks were added to your inventory! ");
         }
         //Fishing
         public void Fishing(PlayerInventory playerInventory)

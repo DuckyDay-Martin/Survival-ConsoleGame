@@ -53,7 +53,8 @@ namespace Survival_ConsoleGame
 
         public void Player_EnergyReceived(int energyAmount)
         {
-            if (currentEnergy > maxEnergy)
+            int energyAfterRegen = currentEnergy + energyAmount;
+            if (energyAfterRegen >= 100)
             {
                 currentEnergy = 100;
             }
@@ -91,7 +92,8 @@ namespace Survival_ConsoleGame
 
         public void Player_Heal(int healAmount)
         { 
-            if (currentHealth > maxHealth) 
+            int healthAfterHealing = currentHealth + healAmount;
+            if (healthAfterHealing >= 100) 
             {
                 currentHealth = 100;
             }
@@ -117,16 +119,31 @@ namespace Survival_ConsoleGame
             return currentHealth;
         }
 
+        //Use item
+        public void Player_UseItem(PlayerInventory inventory)
+        {
+            Console.WriteLine();
+            Console.WriteLine("Which item do you want to use?");
+            Console.WriteLine();
+            inventory.DisplayItems();
+            int n = int.Parse(Console.ReadLine());
+            switch (n)
+            {
+                case 1:
+                    //To-DO
+                    break;
+            }
+        }
+
        //Menu
         public void Start_PlayerMenu()
         {          
-            Console.WriteLine("Tip: So, here are your options or freedom for what you can do or where to go");
-
+            Console.WriteLine("Tip: So, here are your options or freedom for what you can do or where to go!\n" +
+                              "Also your ~Quest Log~ will be everywhere with you so you can keep track of your progress!\n");           
             Console.WriteLine("~1. Your Hut");
             Console.WriteLine("~2. Forest");
             Console.WriteLine("~3. Mountains");
-            Console.WriteLine("~4. City");
-            Console.WriteLine("~5. Player");
+            Console.WriteLine("~4. City");          
 
             Console.WriteLine();
             Console.WriteLine("> ");
