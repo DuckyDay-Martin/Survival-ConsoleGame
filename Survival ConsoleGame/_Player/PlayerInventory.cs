@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Survival_ConsoleGame.Player
 {
-    internal class PlayerInventory
+    public class PlayerInventory
     {
         private List<int> inventory = new List<int>();
-        private Dictionary<int, string> itemIndexer = new Dictionary<int, string>();      
+        public Dictionary<int, string> itemIndexer = new Dictionary<int, string>();      
 
         public PlayerInventory()
         {

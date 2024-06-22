@@ -3,24 +3,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Channels;
 using System.Threading.Tasks;
 
 namespace Survival_ConsoleGame.Destinations.Hut_functionality
 {
     internal class Hut_CraftingTable
     {
-
         PlayerInventory playerInventory;
         _Player player;
-        
-      
 
         public Hut_CraftingTable(PlayerInventory inventory, _Player playerRef)
         {
             this.playerInventory = inventory;
             this.player = playerRef;
-
         }
 
         public void Hut_CraftinTable()
@@ -50,8 +45,8 @@ namespace Survival_ConsoleGame.Destinations.Hut_functionality
             Console.WriteLine("> ");
             int n;
 
-            while (true)//re-do the crafting system - Create ItemsNeeded Method for not adding evrything manualy
-            { 
+            while (true) // re-do the crafting system - Create ItemsNeeded Method for not adding everything manually
+            {
                 n = int.Parse(Console.ReadLine());
 
                 switch (n)
@@ -59,29 +54,25 @@ namespace Survival_ConsoleGame.Destinations.Hut_functionality
                     case 1:
                         int[] knifeNeededItems = { 1, 2, 11 };
                         IfCanCreateItem(playerInventory, 8, knifeNeededItems);
-                        
                         break;
 
                     case 2:
-                        int[] axeNeededItems = { 1, 1, 2, 11, 11};
+                        int[] axeNeededItems = { 1, 1, 2, 11, 11 };
                         IfCanCreateItem(playerInventory, 9, axeNeededItems);
-
                         break;
 
                     case 3:
                         int[] lighterNeededItems = { 3, 2 };
                         IfCanCreateItem(playerInventory, 10, lighterNeededItems);
-
                         break;
 
                     case 4:
-                        int[] ropeNeededItems = { 5, 5, 5, 5, 5};
+                        int[] ropeNeededItems = { 5, 5, 5, 5, 5 };
                         IfCanCreateItem(playerInventory, 11, ropeNeededItems);      
-                        
                         break;
 
                     case 5:
-                        int[] pickaxeNeededItems = { 1, 1, 2, 2, 11, 11};
+                        int[] pickaxeNeededItems = { 1, 1, 2, 2, 11, 11 };
                         IfCanCreateItem(playerInventory, 12, pickaxeNeededItems);
                         break;
 
@@ -89,11 +80,9 @@ namespace Survival_ConsoleGame.Destinations.Hut_functionality
                         Console.Clear();
                         player.Start_PlayerMenu();
                         break;
-
                 }
             }
         }
-
 
         public bool IfCanCreateItem(PlayerInventory inventory, int item, int[] itemsNeeded, int itemCountToBeAdded = 1)
         {
@@ -102,10 +91,9 @@ namespace Survival_ConsoleGame.Destinations.Hut_functionality
                 if (!inventory.HasItem(itemNeeded))
                 {
                     Console.WriteLine("You don't have the materials for this item!\n" +
-                                      "Go and get them , then come back!");
+                                      "Go and get them, then come back!");
                     return false;
                 }
-
             }
 
             foreach (var itemNeeded in itemsNeeded)
@@ -114,8 +102,12 @@ namespace Survival_ConsoleGame.Destinations.Hut_functionality
             }
 
             playerInventory.AddItem(item, itemCountToBeAdded);
-            Console.WriteLine($"{item.GetType()} was crafted and added to your inventory!");
+
+            string itemName = playerInventory.itemIndexer.ContainsKey(item) ? playerInventory.itemIndexer[item] : "Unknown Item";
+            Console.WriteLine($"{itemName} was crafted and added to your inventory!");
             return true;
         }
     }
+
+ 
 }
