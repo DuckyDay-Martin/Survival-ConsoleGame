@@ -11,8 +11,8 @@ namespace Survival_ConsoleGame
 {
     internal class _Player
     {
-        Engine engine = new Engine();
 
+        Player_QuestLog questLog;
         Forest destination_FOREST;
         Mountains destination_MOUNTAINS;
         PlayerInventory playerInventory;
@@ -28,12 +28,15 @@ namespace Survival_ConsoleGame
 
         private int currentEnergy;
         private int maxEnergy;//Max Energy Will be 100
+
+
         public _Player(PlayerInventory inventory, int maxHealth, int startingXP, int maxEnergy)
         {
             playerInventory = inventory;
             destination_FOREST = new Forest(playerInventory, this);
             destination_MOUNTAINS = new Mountains(playerInventory, this);
             destination_HUT = new Hut(playerInventory, this);
+            questLog = new Player_QuestLog(playerInventory, this);
 
             this.maxHealth = maxHealth;
             this.currentHealth = maxHealth;
@@ -143,7 +146,8 @@ namespace Survival_ConsoleGame
             Console.WriteLine("~1. Your Hut");
             Console.WriteLine("~2. Forest");
             Console.WriteLine("~3. Mountains");
-            Console.WriteLine("~4. City");          
+            Console.WriteLine("~4. City");
+            Console.WriteLine("~5. Quest Log");
 
             Console.WriteLine();
             Console.WriteLine("> ");
@@ -165,6 +169,16 @@ namespace Survival_ConsoleGame
                 case 3:
                     Console.Clear();
                     destination_MOUNTAINS.Destination_MountainsMenu();
+                    break;
+
+                case 4:
+                    Console.Clear();
+                    //To-Do City
+                    break;
+
+                case 5:
+                    //questLog.Player_QuestLogView();
+                    Start_PlayerMenu();
                     break;
             }
         }
