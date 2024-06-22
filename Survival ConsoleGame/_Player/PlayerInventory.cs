@@ -46,17 +46,23 @@ namespace Survival_ConsoleGame.Player
 
         public bool HasItem(int item)
         {           
-           return inventory.Contains(item);
-          
-            
+           return inventory.Contains(item);                
         }
 
         //For QuestLog
-        //public int CountItems()
-        //{ 
-        //for
+        public int CountItems(int item)
+        {
+            int count = 0;  
+            foreach (int items in inventory)
+            {
+                if (inventory.Contains(item))
+                {
+                    count++;
+                }
+            }
 
-        //}
+            return count;
+        }
         public void AddItem(int item,int count)
         {
             for (int i = 0; i < count; i++) 
