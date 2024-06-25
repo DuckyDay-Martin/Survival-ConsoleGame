@@ -177,8 +177,10 @@ namespace Survival_ConsoleGame
                     break;
 
                 case 5:
-                    //questLog.Player_QuestLogView();
-                    Start_PlayerMenu();
+                    Console.Clear();
+                    questLog.Player_QuestLogView(playerInventory);
+                    Console.WriteLine();
+                    Start_PlayerMenu();                   
                     break;
             }
         }
