@@ -17,6 +17,7 @@ namespace Survival_ConsoleGame
         Mountains destination_MOUNTAINS;
         PlayerInventory playerInventory;
         Hut destination_HUT;
+        List<Player_QuestLog> quests = new List<Player_QuestLog>();
 
         //Player needs energy implemented, the half is done
 
@@ -36,7 +37,14 @@ namespace Survival_ConsoleGame
             destination_FOREST = new Forest(playerInventory, this);
             destination_MOUNTAINS = new Mountains(playerInventory, this);
             destination_HUT = new Hut(playerInventory, this);
-            questLog = new Player_QuestLog(playerInventory, this);
+
+
+            quests = new List<Player_QuestLog>
+            {
+                new Player_QuestLog(playerInventory, this, "1.Gather 15 Meat", 6 ,15 ,10),
+                new Player_QuestLog(playerInventory, this, "2.Gather 10 Rocks", 2 ,10 ,15),
+                new Player_QuestLog(playerInventory, this, "3.Gather 15 Wood", 1 ,15 ,10),
+            };
 
             this.maxHealth = maxHealth;
             this.currentHealth = maxHealth;
@@ -178,7 +186,7 @@ namespace Survival_ConsoleGame
 
                 case 5:
                     Console.Clear();
-                    questLog.Player_QuestLogView(playerInventory);
+                   // questLog.CheckIfQuestIsCompleted(inventory, );
                     Console.WriteLine();
                     Start_PlayerMenu();                   
                     break;

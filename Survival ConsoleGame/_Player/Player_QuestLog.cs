@@ -13,10 +13,18 @@ namespace Survival_ConsoleGame
         public PlayerInventory inventory;
         public _Player player;
 
-        public Player_QuestLog(PlayerInventory inventory, _Player playerRef)
+        public string questDescription { get; set; }
+        public int questItemNeededID { get; set; }
+        public int questItemNeededCount { get; set; }
+        public int questRewardGold { get; set; }
+
+        public bool isCompleted { get; set; } = false;
+        public Player_QuestLog(PlayerInventory inventory, _Player playerRef,string questDescription, int questItemNeededID, int questItemNeededCount, int questRewardGold)
         { 
             this.inventory = inventory;
             this.player = playerRef;
+
+            this.questDescription = questDescription;
         }
         public void Player_QuestLogView(PlayerInventory inventory)
         {
@@ -24,138 +32,31 @@ namespace Survival_ConsoleGame
             //So we can keep it simple on the screen constantly there will be 3 Quests at the same time
             //After the quest is done the bool flag will turn True and this way the Quest won't be displayed again
 
-            //We need to keep count on the quests after they are acomplished so we can change the Quest Log afterwords
-            int questCount = 0;
+            //We need to keep count on the quests after they are acomplished so we can change the Quest Log afterwords           
+            
+            
 
-            Console.WriteLine("~Quest Log~");
-            //First Quest Log
-            if (questCount <= 3)
+        }
+        public void CheckIfQuestIsCompleted(PlayerInventory inventory, int questCount)
+        {
+            if (!isCompleted)
             {
-                //Wood Quest
-                bool isWoodQuestDone = false;
-                if (isWoodQuestDone == false)
+                if (inventory.CountItems(questItemNeededID) < questItemNeededCount)
                 {
-                    if (inventory.CountItems(1) < 15)
-                    {
-                        Console.WriteLine("1.Gather 15 Wood(+10 Gold)");
-                    }
-                    else
-                    {
-                        isWoodQuestDone = true;
-                        Console.WriteLine("1.Well Done!Here is your +10 Gold");
-                        questCount++;
-                    }
+                    Console.WriteLine($"{questDescription} +{questRewardGold} Gold");
+                    isCompleted = false;
                 }
                 else
                 {
-                    Console.WriteLine("1.Well Done!");
-                }
-
-                //Rocks Quest
-                bool isRockQuestDone = false;
-                if (isRockQuestDone == false)
-                {
-                    if (inventory.CountItems(2) < 10)
-                    {
-                        Console.WriteLine("2.Gather 10 Rocks(+15 Gold)");
-                    }
-                    else
-                    {
-                        isRockQuestDone = true;
-                        Console.WriteLine("2.Well Done!Here is your +15 Gold");
-                        questCount++;
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("2.Well Done!");
-                }
-
-                //Meat Quest
-                bool isMeatQuestDone = false;
-                if (isMeatQuestDone == false)
-                {
-                    if (inventory.CountItems(6) < 5)
-                    {
-                        Console.WriteLine("3.Gather 5 Meat(+6 Gold)");
-                    }
-                    else
-                    {
-                        isMeatQuestDone = true;
-                        Console.WriteLine("3.Well Done!Here is your +6 Gold");
-                        questCount++;
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("3.Well Done!");
+                    Console.WriteLine($"Well Done! Here is your {questRewardGold} Gold!");
+                    isCompleted = true;
+                    questCount++;
                 }
             }
-
-            //Sec Quest Log
-            if (questCount >= 3 && questCount <= 6)
+            else
             {
-                //Knife Quest
-                bool isKnifeQuestDone = false;
-                if (isKnifeQuestDone == false)
-                {
-                    if (inventory.CountItems(8) < 1)
-                    {
-                        Console.WriteLine("1.Craft 1 Knife! (+20 Gold)");
-                    }
-                    else
-                    {
-                        isKnifeQuestDone = true;
-                        Console.WriteLine("1.Well Done!Here is your +20 Gold");
-                        questCount++;
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("1.Well Done!");
-                }
-
-                //Pickaxe Quest
-                bool isPickaxeQuestDone = false;
-                if (isPickaxeQuestDone == false)
-                {
-                    if (inventory.CountItems(12) < 1)
-                    {
-                        Console.WriteLine("2.Craft 1 Pickaxe! (+20 Gold)");
-                    }
-                    else
-                    {
-                        isPickaxeQuestDone = true;
-                        Console.WriteLine("2.Well Done!Here is your +20 Gold");
-                        questCount++;
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("2.Well Done!");
-                }
-
-                //Rope Quest
-                bool isRopeQuestDone = false;
-                if (isRopeQuestDone == false)
-                {
-                    if (inventory.CountItems(12) < 1)
-                    {
-                        Console.WriteLine("3.Craft 3 Ropes! (+15 Gold)");
-                    }
-                    else
-                    {
-                        isRopeQuestDone = true;
-                        Console.WriteLine("3.Well Done!Here is your +25 Gold");
-                        questCount++;
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("3.Well Done!");
-                }
+                Console.WriteLine("Well Done!");
             }
         }
-
     }
 }
