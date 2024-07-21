@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
+using System.Net.Quic;
 
 namespace Survival_ConsoleGame
 {
@@ -25,6 +26,9 @@ namespace Survival_ConsoleGame
             this.player = playerRef;
 
             this.questDescription = questDescription;
+            this.questItemNeededID = questItemNeededID;
+            this.questItemNeededCount = questItemNeededCount;
+            this.questRewardGold = questRewardGold;
         }
         public void Player_QuestLogView(PlayerInventory inventory)
         {
@@ -58,5 +62,7 @@ namespace Survival_ConsoleGame
                 Console.WriteLine("Well Done!");
             }
         }
+
+
     }
 }

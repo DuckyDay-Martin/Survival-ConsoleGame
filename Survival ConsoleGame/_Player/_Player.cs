@@ -17,7 +17,7 @@ namespace Survival_ConsoleGame
         Mountains destination_MOUNTAINS;
         PlayerInventory playerInventory;
         Hut destination_HUT;
-        List<Player_QuestLog> quests = new List<Player_QuestLog>();
+        List<Player_QuestLog> quests;
 
         //Player needs energy implemented, the half is done
 
@@ -41,9 +41,15 @@ namespace Survival_ConsoleGame
 
             quests = new List<Player_QuestLog>
             {
+                //Quest Log _1
                 new Player_QuestLog(playerInventory, this, "1.Gather 15 Meat", 6 ,15 ,10),
                 new Player_QuestLog(playerInventory, this, "2.Gather 10 Rocks", 2 ,10 ,15),
                 new Player_QuestLog(playerInventory, this, "3.Gather 15 Wood", 1 ,15 ,10),
+                
+                //Quest Log _2
+                new Player_QuestLog(playerInventory, this, "1.Craft 1 Knife", 8 ,1 ,10),
+                new Player_QuestLog(playerInventory, this, "2.Craft 4 Rope", 11 ,4 ,15),
+                new Player_QuestLog(playerInventory, this, "3.Craft 1 Pickaxe", 12 ,1 ,10),
             };
 
             this.maxHealth = maxHealth;
@@ -145,6 +151,32 @@ namespace Survival_ConsoleGame
                     break;
             }
         }
+        //QuestLog Helper
+        public void QuestLogHelper(PlayerInventory inventory)
+        {
+            int questCount = 0;
+
+            while (questCount < 6) 
+            {
+                if (questCount < 3)
+                {
+                    quests[0].CheckIfQuestIsCompleted(inventory, questCount);
+                    quests[1].CheckIfQuestIsCompleted(inventory, questCount);
+                    quests[2].CheckIfQuestIsCompleted(inventory, questCount);
+                    break;
+                }
+                else
+                {
+                    quests[3].CheckIfQuestIsCompleted(inventory, questCount);
+                    quests[4].CheckIfQuestIsCompleted(inventory, questCount);
+                    quests[5].CheckIfQuestIsCompleted(inventory, questCount);
+                    break;
+                }
+
+            }
+
+        }
+
 
        //Menu
         public void Start_PlayerMenu()
@@ -186,9 +218,13 @@ namespace Survival_ConsoleGame
 
                 case 5:
                     Console.Clear();
-                   // questLog.CheckIfQuestIsCompleted(inventory, );
+                    Console.WriteLine("When compleating a task ,you will get rewarded.\n" +
+                                      "Go to the Hut for more info!");
+                    Console.WriteLine("_____________________________");
+                    QuestLogHelper(playerInventory);
+                    Console.WriteLine("_____________________________");
                     Console.WriteLine();
-                    Start_PlayerMenu();                   
+                    Start_PlayerMenu();                                  
                     break;
             }
         }
